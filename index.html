@@ -76,10 +76,38 @@
         <div id="game-screen" class="screen">
             <canvas id="gameCanvas"></canvas>
             <div class="game-ui">
+                <!-- Score Display - Top Left -->
                 <div class="score-display">
-                    <div class="score">Score: <span id="score">0</span></div>
-                    <div class="combo">Combo: <span id="combo">0</span></div>
+                    <div class="score-area">
+                        <div class="grade-box"><span id="current-grade">C</span></div>
+                        <div>
+                            <span class="score" id="score">00000000</span>
+                            <span class="score-add" id="score-add">+0</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="grade-markers">
+                        <span>C</span><span>B</span><span>A</span><span>S</span>
+                    </div>
                 </div>
+                
+                <!-- Life Display - Top Right -->
+                <div class="life-display">
+                    <span class="life-icon">♥</span>
+                    <div class="life-bar">
+                        <div class="life-fill" id="life-fill" style="width: 100%"></div>
+                    </div>
+                    <span class="life-value" id="life-value">1000</span>
+                </div>
+                
+                <!-- Combo Display - Right Side -->
+                <div class="combo-display">
+                    <div class="combo-label">COMBO</div>
+                    <div class="combo" id="combo">0</div>
+                </div>
+                
                 <div class="judgment" id="judgment"></div>
                 <button class="pause-btn" onclick="pauseGame()">⏸</button>
             </div>

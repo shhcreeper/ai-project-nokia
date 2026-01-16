@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +8,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #0a0015;
     overflow: hidden;
     height: 100vh;
 }
@@ -33,25 +35,27 @@ body {
 /* Main Menu */
 .menu-container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(30, 10, 50, 0.95);
     padding: 60px 80px;
     border-radius: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 60px rgba(180, 100, 255, 0.5), inset 0 0 30px rgba(180, 100, 255, 0.1);
     animation: fadeIn 0.5s ease;
+    border: 2px solid rgba(180, 100, 255, 0.4);
 }
 
 .game-title {
     font-size: 48px;
-    color: #ff6b9d;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    color: #ff6be6;
+    text-shadow: 0 0 20px #ff6be6, 0 0 40px #ff6be6;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
 .subtitle {
     font-size: 24px;
-    color: #764ba2;
+    color: #b4e0ff;
     margin-bottom: 30px;
+    text-shadow: 0 0 10px #b4e0ff;
 }
 
 .character-showcase {
@@ -64,11 +68,12 @@ body {
 .character {
     width: 200px;
     height: 300px;
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    background: linear-gradient(135deg, rgba(180, 100, 255, 0.3) 0%, rgba(100, 200, 255, 0.3) 100%);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 30px rgba(180, 100, 255, 0.4);
+    border: 2px solid rgba(180, 100, 255, 0.5);
 }
 
 #rui-showcase::before {
@@ -99,37 +104,43 @@ body {
 .menu-btn {
     padding: 15px 50px;
     font-size: 20px;
-    border: none;
+    border: 2px solid rgba(180, 100, 255, 0.6);
     border-radius: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, rgba(100, 50, 150, 0.8) 0%, rgba(50, 30, 100, 0.8) 100%);
+    color: #e0d0ff;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 0 20px rgba(180, 100, 255, 0.3), inset 0 0 10px rgba(180, 100, 255, 0.2);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .menu-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 0 40px rgba(180, 100, 255, 0.6), inset 0 0 20px rgba(180, 100, 255, 0.3);
+    border-color: #ff6be6;
+    color: #fff;
 }
 
 /* Song Selection */
 .song-select-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(30, 10, 50, 0.95);
     padding: 40px;
     border-radius: 30px;
     max-width: 800px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
+    border: 2px solid rgba(180, 100, 255, 0.4);
+    box-shadow: 0 0 60px rgba(180, 100, 255, 0.3);
 }
 
 .song-select-container h2 {
-    color: #764ba2;
+    color: #ff6be6;
     margin-bottom: 30px;
     font-size: 36px;
     text-align: center;
+    text-shadow: 0 0 20px #ff6be6;
 }
 
 .song-list {
@@ -140,33 +151,34 @@ body {
 }
 
 .song-card {
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    background: linear-gradient(135deg, rgba(100, 50, 150, 0.4) 0%, rgba(50, 100, 150, 0.4) 100%);
     padding: 25px;
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 3px solid transparent;
+    border: 2px solid rgba(180, 100, 255, 0.3);
 }
 
 .song-card:hover {
     transform: translateX(10px);
-    border-color: #667eea;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    border-color: #ff6be6;
+    box-shadow: 0 0 30px rgba(255, 107, 230, 0.4);
 }
 
 .song-card h3 {
-    color: #764ba2;
+    color: #b4e0ff;
     font-size: 24px;
     margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(180, 224, 255, 0.5);
 }
 
 .song-card p {
-    color: #555;
+    color: #c0b0e0;
     margin-bottom: 10px;
 }
 
 .song-info {
-    color: #888;
+    color: #8080a0;
     font-size: 14px;
 }
 
@@ -175,44 +187,47 @@ body {
     margin: 30px 0;
 }
 
-difficulty-select h3 {
-    color: #764ba2;
+.difficulty-select h3 {
+    color: #b4e0ff;
     margin-bottom: 15px;
 }
 
-difficulty-select .diff-btn {
+.diff-btn {
     padding: 10px 30px;
     margin: 0 5px;
-    border: 2px solid #667eea;
-    background: white;
-    color: #667eea;
+    border: 2px solid rgba(180, 100, 255, 0.5);
+    background: rgba(50, 30, 80, 0.8);
+    color: #c0b0e0;
     border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
     transition: all 0.3s ease;
 }
 
-difficulty-select .diff-btn:hover, .diff-btn.active {
-    background: #667eea;
+.diff-btn:hover, .diff-btn.active {
+    background: linear-gradient(135deg, rgba(180, 100, 255, 0.6) 0%, rgba(100, 50, 150, 0.6) 100%);
     color: white;
+    border-color: #ff6be6;
+    box-shadow: 0 0 20px rgba(255, 107, 230, 0.4);
 }
 
 .back-btn {
     padding: 12px 40px;
-    background: #ff6b9d;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8) 0%, rgba(180, 100, 255, 0.8) 100%);
     color: white;
-    border: none;
+    border: 2px solid rgba(255, 107, 230, 0.5);
     border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
     display: block;
     margin: 20px auto 0;
     transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 107, 230, 0.3);
 }
 
 .back-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+    box-shadow: 0 0 40px rgba(255, 107, 230, 0.5);
 }
 
 /* Dialogue Screen */
@@ -220,15 +235,23 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     width: 100%;
     height: 100%;
     position: relative;
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    background: linear-gradient(180deg, #1a0030 0%, #0a0020 100%);
+    overflow: hidden;
 }
 
 .dialogue-background {
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23764ba2" width="1000" height="600"/><circle cx="500" cy="300" r="200" fill="%23667eea" opacity="0.3"/></svg>');
-    background-size: cover;
+    background: radial-gradient(ellipse at center, rgba(100, 50, 150, 0.3) 0%, transparent 70%);
     position: absolute;
+}
+
+/* Pixel Characters in Story */
+.pixel-character {
+    position: absolute;
+    bottom: 250px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 .character-left, .character-right {
@@ -239,16 +262,15 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom;
+    image-rendering: pixelated;
 }
 
 .character-left {
     left: 100px;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><text x="50" y="150" font-size="100">🎭</text></svg>');
 }
 
 .character-right {
     right: 100px;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><text x="50" y="150" font-size="100">⭐</text></svg>');
 }
 
 .dialogue-box {
@@ -258,30 +280,32 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     transform: translateX(-50%);
     width: 90%;
     max-width: 1000px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(20, 10, 40, 0.95);
     border-radius: 20px;
     padding: 25px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 40px rgba(180, 100, 255, 0.4);
     cursor: pointer;
+    border: 2px solid rgba(180, 100, 255, 0.5);
 }
 
 .speaker-name {
     font-size: 24px;
     font-weight: bold;
-    color: #764ba2;
+    color: #ff6be6;
     margin-bottom: 10px;
+    text-shadow: 0 0 10px #ff6be6;
 }
 
 .dialogue-text {
     font-size: 20px;
-    color: #333;
+    color: #e0d0ff;
     line-height: 1.6;
     margin-bottom: 15px;
 }
 
 .continue-prompt {
     text-align: right;
-    color: #888;
+    color: #8080a0;
     font-size: 16px;
     animation: blink 1.5s infinite;
 }
@@ -293,12 +317,12 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
 
 /* Game Screen */
 #game-screen {
-    background: #000;
+    background: #0a0015;
 }
 
 #gameCanvas {
     display: block;
-    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    background: transparent;
 }
 
 .game-ui {
@@ -306,30 +330,182 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     pointer-events: none;
 }
 
+/* Score Display - Top Left */
 .score-display {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.score-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.grade-box {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #80ff80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #80ff80;
+    transform: rotate(-45deg);
+}
+
+.grade-box span {
+    transform: rotate(45deg);
+}
+
+.score {
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.score-add {
+    font-size: 18px;
+    color: #80ff80;
+    margin-left: 5px;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 400px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    color: white;
-    font-size: 24px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #80ff80 0%, #40e0d0 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.grade-markers {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #8080a0;
+}
+
+/* Combo Display - Right Side */
+.combo-display {
+    position: absolute;
+    top: 250px;
+    right: 50px;
+    text-align: right;
+}
+
+.combo-label {
+    font-size: 20px;
+    color: #c0b0e0;
+    text-shadow: 0 0 10px rgba(192, 176, 224, 0.5);
+}
+
+.combo {
+    font-size: 72px;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    color: #e0d0ff;
+    text-shadow: 0 0 30px rgba(180, 100, 255, 0.8), 0 0 60px rgba(180, 100, 255, 0.4);
+}
+
+/* Life Bar - Top Right */
+.life-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.life-icon {
+    font-size: 24px;
+    color: #80ff80;
+    text-shadow: 0 0 10px #80ff80;
+}
+
+.life-bar {
+    width: 150px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(128, 255, 128, 0.5);
+}
+
+.life-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #60dd60 0%, #80ff80 100%);
+    transition: width 0.3s ease;
+}
+
+.life-value {
+    font-size: 18px;
+    color: #80ff80;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(128, 255, 128, 0.5);
 }
 
 .judgment {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 48px;
+    font-size: 56px;
     font-weight: bold;
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    color: #00ffff;
+    text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px rgba(0, 255, 255, 0.5);
     opacity: 0;
     pointer-events: none;
+}
+
+.judgment.perfect {
+    color: #00ffff;
+    text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+}
+
+.judgment.great {
+    color: #80ff80;
+    text-shadow: 0 0 20px #80ff80, 0 0 40px #80ff80;
+}
+
+.judgment.good {
+    color: #ffff00;
+    text-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00;
+}
+
+.judgment.miss {
+    color: #ff6060;
+    text-shadow: 0 0 20px #ff6060, 0 0 40px #ff6060;
 }
 
 .judgment.show {
@@ -345,37 +521,47 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
 .pause-btn {
     position: absolute;
     top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.3);
-    border: 2px solid white;
+    right: 200px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     color: white;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 24px;
     pointer-events: all;
+    transition: all 0.3s ease;
+}
+
+.pause-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 /* Results Screen */
 .results-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(30, 10, 50, 0.95);
     padding: 50px;
     border-radius: 30px;
     text-align: center;
     min-width: 500px;
+    border: 2px solid rgba(180, 100, 255, 0.4);
+    box-shadow: 0 0 60px rgba(180, 100, 255, 0.3);
 }
 
 .results-container h2 {
-    color: #764ba2;
+    color: #ff6be6;
     font-size: 36px;
     margin-bottom: 20px;
+    text-shadow: 0 0 20px #ff6be6;
 }
 
 .grade {
     font-size: 120px;
     font-weight: bold;
-    color: #ff6b9d;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    color: #80ff80;
+    text-shadow: 0 0 30px #80ff80, 0 0 60px rgba(128, 255, 128, 0.5);
     margin: 20px 0;
 }
 
@@ -388,32 +574,35 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     justify-content: space-between;
     padding: 15px;
     margin: 10px 0;
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    background: linear-gradient(135deg, rgba(100, 50, 150, 0.4) 0%, rgba(50, 100, 150, 0.4) 100%);
     border-radius: 10px;
     font-size: 20px;
+    border: 1px solid rgba(180, 100, 255, 0.3);
 }
 
 .stat-label {
     font-weight: bold;
-    color: #764ba2;
+    color: #b4e0ff;
 }
 
 .stat-value {
-    color: #667eea;
+    color: #80ff80;
     font-weight: bold;
+    text-shadow: 0 0 10px rgba(128, 255, 128, 0.5);
 }
 
 .stat-breakdown {
     margin-top: 20px;
     padding: 20px;
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(100, 50, 150, 0.2);
     border-radius: 10px;
+    border: 1px solid rgba(180, 100, 255, 0.3);
 }
 
 .stat-breakdown div {
     margin: 8px 0;
     font-size: 18px;
-    color: #555;
+    color: #c0b0e0;
 }
 
 .results-buttons {
@@ -425,17 +614,20 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
 
 /* Settings Screen */
 .settings-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(30, 10, 50, 0.95);
     padding: 40px;
     border-radius: 30px;
     min-width: 500px;
+    border: 2px solid rgba(180, 100, 255, 0.4);
+    box-shadow: 0 0 60px rgba(180, 100, 255, 0.3);
 }
 
 .settings-container h2 {
-    color: #764ba2;
+    color: #ff6be6;
     font-size: 36px;
     margin-bottom: 30px;
     text-align: center;
+    text-shadow: 0 0 20px #ff6be6;
 }
 
 .setting {
@@ -444,7 +636,7 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
 
 .setting label {
     display: block;
-    color: #764ba2;
+    color: #b4e0ff;
     font-size: 20px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -454,7 +646,7 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     width: 100%;
     height: 8px;
     border-radius: 5px;
-    background: #ddd;
+    background: rgba(180, 100, 255, 0.3);
     outline: none;
     -webkit-appearance: none;
 }
@@ -465,17 +657,19 @@ difficulty-select .diff-btn:hover, .diff-btn.active {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #667eea;
+    background: linear-gradient(135deg, #ff6be6 0%, #b464ff 100%);
     cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 107, 230, 0.5);
 }
 
 .setting input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #667eea;
+    background: linear-gradient(135deg, #ff6be6 0%, #b464ff 100%);
     cursor: pointer;
     border: none;
+    box-shadow: 0 0 15px rgba(255, 107, 230, 0.5);
 }
 
 /* Animations */
