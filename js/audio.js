@@ -71,7 +71,7 @@ function playSFX(type) {
     // Quick beep
     gainNode.gain.value = 0.3;
     oscillator.start();
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    gainNode.gain.linearRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
     oscillator.stop(audioContext.currentTime + 0.1);
 }
 

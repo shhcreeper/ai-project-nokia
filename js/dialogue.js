@@ -33,9 +33,11 @@ function startDialogue() {
     currentDialogueIndex = 0;
     displayDialogue();
     
-    // Add click handler to dialogue box
+    // Add click handler to dialogue box (with safety check)
     const dialogueBox = document.querySelector('.dialogue-box');
-    dialogueBox.onclick = nextDialogue;
+    if (dialogueBox) {
+        dialogueBox.onclick = nextDialogue;
+    }
 }
 
 // Display current dialogue
