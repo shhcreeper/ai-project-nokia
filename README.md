@@ -1,6 +1,13 @@
 # Wonderlands×Showtime Rhythm Game
 
-A Project Sekai-themed rhythm game featuring Rui and Tsukasa with falling notes gameplay.
+A Project Sekai-themed rhythm game featuring Rui and Tsukasa with **3D falling notes** and enhanced visual effects.
+
+## 🎮 New in v1.1.0 - 3D Edition!
+
+- **3D Perspective Notes**: Notes scale from small to large as they approach, creating realistic depth
+- **Enhanced Visibility**: Larger notes (80px), glowing auras, and extended travel time
+- **Improved Visual Effects**: Shadow effects, 3D lighting, and gradient glows
+- **Better Target Zones**: Enhanced rings with depth circles and larger key labels
 
 ## How to Play
 
@@ -13,6 +20,8 @@ A Project Sekai-themed rhythm game featuring Rui and Tsukasa with falling notes 
 ## Features
 
 - **4-Lane Rhythm Gameplay**: Press D, F, J, K keys to match falling notes
+- **3D Perspective Effect**: Notes grow as they approach for realistic depth
+- **Enhanced Visual Clarity**: Larger notes with glowing effects for better visibility
 - **3 Songs**: Star of the Show, Inventor's Melody, Wonderful Showtime
 - **3 Difficulty Levels**: Easy, Normal, Hard
 - **Scoring System**: Perfect (300pts), Great (200pts), Good (100pts)
@@ -35,10 +44,17 @@ A Project Sekai-themed rhythm game featuring Rui and Tsukasa with falling notes 
 - **Good**: ±150 pixels - 100 points
 - **Miss**: Beyond good range - 0 points, combo resets
 
+## 3D Visual Features
+
+- **Perspective Scaling**: Notes start at 30% size and scale to 100% as they approach
+- **Depth Effects**: Shadow and glow effects enhance 3D perception
+- **Extended Visibility**: Notes spawn higher and travel longer for better readability
+- **3D Lighting**: Highlight gradients create sphere-like appearance
+
 ## Technical Details
 
 - Built with HTML5, CSS3, and JavaScript
-- Canvas-based rendering for smooth animations
+- Canvas-based rendering with 3D perspective effects
 - Web Audio API for sound effects
 - LocalStorage for high score persistence
 - No external dependencies required
@@ -58,12 +74,25 @@ No installation required! Simply:
 2. Open `index.html` in your browser
 3. Start playing!
 
+## Version History
+
+### v1.1.0 - 3D Edition (Current)
+- Added 3D perspective scaling for notes
+- Improved note visibility and size
+- Enhanced visual effects with glows and shadows
+- Better target zone design
+
+### v1.0.0 - Initial Release
+- Core rhythm game mechanics
+- 4-lane gameplay
+- Basic visual design
+
 ## Credits
 
-- Game Design: Rhythm game mechanics with falling notes
+- Game Design: Rhythm game mechanics with 3D falling notes
 - Theme: Project Sekai - Wonderlands×Showtime
 - Characters: Rui Kamishiro & Tsukasa Tenma
 
 ---
 
-Enjoy your wonderful performance! ⭐🎭
+Enjoy your wonderful performance with enhanced 3D depth! ⭐🎭
