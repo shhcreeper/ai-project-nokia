@@ -75,8 +75,10 @@ class Note {
         ctx.shadowOffsetY = 5 * this.scale;
         
         // Draw outer glow for visibility
-        const innerGlowRadius = Math.max(1, scaledSize / 8);
-        const outerGlowRadius = Math.max(innerGlowRadius + 1, scaledSize / 2 + 15);
+        const minGlowInner = 1;
+        const minGlowOuter = 3; // Ensure minimum separation
+        const innerGlowRadius = Math.max(minGlowInner, scaledSize / 8);
+        const outerGlowRadius = Math.max(innerGlowRadius + minGlowOuter, scaledSize / 2 + 15);
         const glowGradient = ctx.createRadialGradient(
             centerX, centerY, innerGlowRadius,
             centerX, centerY, outerGlowRadius
@@ -97,8 +99,12 @@ class Note {
         ctx.shadowOffsetY = 0;
         
         // Draw note with gradient (3D effect with lighter top)
-        const innerRadius = Math.max(1, Math.min(scaledSize / 8, scaledSize / 2 - 1));
-        const outerRadius = Math.max(innerRadius + 1, scaledSize / 2);
+        const minInner = 1;
+        const minSeparation = 2; // Ensure minimum separation between radii
+        const calcInner = Math.max(minInner, scaledSize / 8);
+        const calcOuter = Math.max(minInner + minSeparation, scaledSize / 2);
+        const innerRadius = Math.min(calcInner, calcOuter - minSeparation);
+        const outerRadius = Math.max(innerRadius + minSeparation, calcOuter);
         const gradient = ctx.createRadialGradient(
             centerX - scaledSize / 6, centerY - scaledSize / 6, innerRadius,
             centerX, centerY, outerRadius
