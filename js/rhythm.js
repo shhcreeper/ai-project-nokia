@@ -199,6 +199,11 @@ function handleKeyPress(e) {
         processHit(judgment);
         showJudgment(judgment);
         
+        // Audio feedback
+        if (typeof playSFX === 'function') {
+            playSFX(judgment);
+        }
+        
         // Visual feedback - flash the lane
         flashLane(laneIndex);
     }
@@ -288,7 +293,7 @@ function gameLoop() {
         
         // Update and draw notes
         const laneWidth = canvas.width / LANES;
-        const noteSpeed = gameSettings.noteSpeed || 5;
+        const noteSpeed = (typeof gameSettings !== 'undefined' && gameSettings.noteSpeed) ? gameSettings.noteSpeed : 5;
         
         for (const note of gameState.notes) {
             note.update(gameState.currentTime, noteSpeed);
@@ -390,16 +395,18 @@ function endGame() {
     const hitNotes = gameState.hitCounts.perfect + gameState.hitCounts.great + gameState.hitCounts.good;
     const accuracy = totalNotes > 0 ? (hitNotes / totalNotes) * 100 : 0;
     
-    // Show results
-    showResults({
-        score: gameState.score,
-        maxCombo: gameState.maxCombo,
-        accuracy: accuracy,
-        perfect: gameState.hitCounts.perfect,
-        great: gameState.hitCounts.great,
-        good: gameState.hitCounts.good,
-        miss: gameState.hitCounts.miss
-    });
+    // Show results (check if function exists)
+    if (typeof showResults === 'function') {
+        showResults({
+            score: gameState.score,
+            maxCombo: gameState.maxCombo,
+            accuracy: accuracy,
+            perfect: gameState.hitCounts.perfect,
+            great: gameState.hitCounts.great,
+            good: gameState.hitCounts.good,
+            miss: gameState.hitCounts.miss
+        });
+    }
 }
 
 // Make gameState available globally for pause functionality

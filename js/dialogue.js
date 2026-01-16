@@ -41,8 +41,10 @@ function startDialogue() {
 // Display current dialogue
 function displayDialogue() {
     if (currentDialogueIndex >= dialogues.length) {
-        // End of dialogue, return to menu
-        showMainMenu();
+        // End of dialogue, return to menu (check if function exists)
+        if (typeof showMainMenu === 'function') {
+            showMainMenu();
+        }
         return;
     }
     

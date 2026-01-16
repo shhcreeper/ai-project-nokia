@@ -16,9 +16,12 @@ function initializeAudio() {
         musicGain.connect(audioContext.destination);
         sfxGain.connect(audioContext.destination);
         
-        // Set initial volumes
-        musicGain.gain.value = gameSettings.musicVolume || 0.8;
-        sfxGain.gain.value = gameSettings.sfxVolume || 0.7;
+        // Set initial volumes (with safety check)
+        const defaultMusicVolume = (typeof gameSettings !== 'undefined' && gameSettings.musicVolume) ? gameSettings.musicVolume : 0.8;
+        const defaultSfxVolume = (typeof gameSettings !== 'undefined' && gameSettings.sfxVolume) ? gameSettings.sfxVolume : 0.7;
+        
+        musicGain.gain.value = defaultMusicVolume;
+        sfxGain.gain.value = defaultSfxVolume;
     } catch (e) {
         console.log('Audio not supported in this browser', e);
     }
