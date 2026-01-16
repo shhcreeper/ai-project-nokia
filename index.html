@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Sekai Rhythm Game - Rui & Tsukasa</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-container">
+                <h1 class="game-title">Wonderlands×Showtime</h1>
+                <h2 class="subtitle">Rhythm Game</h2>
+                <div class="character-showcase">
+                    <div class="character" id="rui-showcase"></div>
+                    <div class="character" id="tsukasa-showcase"></div>
+                </div>
+                <div class="menu-buttons">
+                    <button class="menu-btn" onclick="showSongSelect()">Play</button>
+                    <button class="menu-btn" onclick="showStory()">Story</button>
+                    <button class="menu-btn" onclick="showSettings()">Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Song Selection -->
+        <div id="song-select" class="screen">
+            <div class="song-select-container">
+                <h2>Select a Song</h2>
+                <div class="song-list">
+                    <div class="song-card" onclick="selectSong('song1')">
+                        <h3>Star of the Show</h3>
+                        <p>A dramatic performance</p>
+                        <div class="song-info">BPM: 135 | Duration: 1:45</div>
+                    </div>
+                    <div class="song-card" onclick="selectSong('song2')">
+                        <h3>Inventor's Melody</h3>
+                        <p>A playful creation</p>
+                        <div class="song-info">BPM: 140 | Duration: 1:50</div>
+                    </div>
+                    <div class="song-card" onclick="selectSong('song3')">
+                        <h3>Wonderful Showtime</h3>
+                        <p>Together on stage</p>
+                        <div class="song-info">BPM: 150 | Duration: 2:00</div>
+                    </div>
+                </div>
+                <div class="difficulty-select">
+                    <h3>Difficulty</h3>
+                    <button class="diff-btn" onclick="setDifficulty('easy')">Easy</button>
+                    <button class="diff-btn active" onclick="setDifficulty('normal')">Normal</button>
+                    <button class="diff-btn" onclick="setDifficulty('hard')">Hard</button>
+                </div>
+                <button class="back-btn" onclick="showMainMenu()">Back</button>
+            </div>
+        </div>
+
+        <!-- Dialogue/Story Screen -->
+        <div id="story-screen" class="screen">
+            <div class="dialogue-container">
+                <div class="dialogue-background"></div>
+                <div class="character-left" id="char-left"></div>
+                <div class="character-right" id="char-right"></div>
+                <div class="dialogue-box">
+                    <div class="speaker-name" id="speaker-name">Rui</div>
+                    <div class="dialogue-text" id="dialogue-text">
+                        Fufu~ Tsukasa-kun, are you ready for our wonderful performance?
+                    </div>
+                    <div class="continue-prompt">▼ Click to continue</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <canvas id="gameCanvas"></canvas>
+            <div class="game-ui">
+                <div class="score-display">
+                    <div class="score">Score: <span id="score">0</span></div>
+                    <div class="combo">Combo: <span id="combo">0</span></div>
+                </div>
+                <div class="judgment" id="judgment"></div>
+                <button class="pause-btn" onclick="pauseGame()">⏸</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-container">
+                <h2>Results</h2>
+                <div class="grade" id="grade">S</div>
+                <div class="results-stats">
+                    <div class="stat">
+                        <span class="stat-label">Score:</span>
+                        <span class="stat-value" id="final-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Max Combo:</span>
+                        <span class="stat-value" id="max-combo">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Accuracy:</span>
+                        <span class="stat-value" id="accuracy">0%</span>
+                    </div>
+                    <div class="stat-breakdown">
+                        <div>Perfect: <span id="perfect-count">0</span></div>
+                        <div>Great: <span id="great-count">0</span></div>
+                        <div>Good: <span id="good-count">0</span></div>
+                        <div>Miss: <span id="miss-count">0</span></div>
+                    </div>
+                </div>
+                <div class="results-buttons">
+                    <button class="menu-btn" onclick="showSongSelect()">Song Select</button>
+                    <button class="menu-btn" onclick="showMainMenu()">Main Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div id="settings-screen" class="screen">
+            <div class="settings-container">
+                <h2>Settings</h2>
+                <div class="setting">
+                    <label>Note Speed: <span id="speed-value">5</span></label>
+                    <input type="range" id="note-speed" min="1" max="10" value="5" oninput="updateSpeed(this.value)">
+                </div>
+                <div class="setting">
+                    <label>Music Volume: <span id="music-volume-value">80</span>%</label>
+                    <input type="range" id="music-volume" min="0" max="100" value="80" oninput="updateMusicVolume(this.value)">
+                </div>
+                <div class="setting">
+                    <label>SFX Volume: <span id="sfx-volume-value">70</span>%</label>
+                    <input type="range" id="sfx-volume" min="0" max="100" value="70" oninput="updateSFXVolume(this.value)">
+                </div>
+                <button class="back-btn" onclick="showMainMenu()">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/audio.js"></script>
+    <script src="js/dialogue.js"></script>
+    <script src="js/rhythm.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
