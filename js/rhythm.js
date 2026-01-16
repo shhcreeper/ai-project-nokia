@@ -20,8 +20,9 @@ let gameState = {
 // Game Configuration
 const LANES = 4; // Number of note lanes (D, F, J, K keys)
 const LANE_KEYS = ['d', 'f', 'j', 'k'];
-const NOTE_SIZE = 60;
+const NOTE_SIZE = 80; // Increased from 60 for better visibility
 const TARGET_Y = 550; // Y position of target zones
+const NOTE_SPAWN_Y = -400; // Start notes higher up for longer visibility
 const JUDGMENT_THRESHOLDS = {
     perfect: 50,  // pixels
     great: 100,
@@ -33,16 +34,23 @@ class Note {
     constructor(lane, time) {
         this.lane = lane;
         this.time = time; // When to hit (in milliseconds)
-        this.y = -NOTE_SIZE;
+        this.y = NOTE_SPAWN_Y;
         this.hit = false;
         this.missed = false;
+        this.scale = 0.3; // Start smaller for 3D effect
     }
     
     update(currentTime, noteSpeed) {
         // Calculate note position based on time
         const timeDiff = this.time - currentTime;
-        const speed = noteSpeed * 0.5; // Adjust speed factor
+        const speed = noteSpeed * 0.4; // Adjusted speed factor for longer visibility
         this.y = TARGET_Y - (timeDiff * speed);
+        
+        // Calculate 3D scale effect (notes get bigger as they approach)
+        const distanceToTarget = TARGET_Y - this.y;
+        const maxDistance = TARGET_Y - NOTE_SPAWN_Y;
+        const progress = 1 - (distanceToTarget / maxDistance);
+        this.scale = 0.3 + (progress * 0.7); // Scale from 0.3 to 1.0
         
         // Mark as missed if it goes past the target
         if (this.y > TARGET_Y + JUDGMENT_THRESHOLDS.good && !this.hit && !this.missed) {
@@ -55,25 +63,75 @@ class Note {
     draw(ctx, laneWidth) {
         if (this.hit || this.missed) return;
         
-        const x = this.lane * laneWidth + (laneWidth - NOTE_SIZE) / 2;
+        const x = this.lane * laneWidth + (laneWidth - NOTE_SIZE * this.scale) / 2;
+        const scaledSize = NOTE_SIZE * this.scale;
+        const centerX = x + scaledSize / 2;
+        const centerY = this.y + scaledSize / 2;
         
-        // Draw note with gradient
-        const gradient = ctx.createRadialGradient(
-            x + NOTE_SIZE/2, this.y + NOTE_SIZE/2, 5,
-            x + NOTE_SIZE/2, this.y + NOTE_SIZE/2, NOTE_SIZE/2
+        // Draw 3D shadow/depth effect
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+        ctx.shadowBlur = 20 * this.scale;
+        ctx.shadowOffsetX = 5 * this.scale;
+        ctx.shadowOffsetY = 5 * this.scale;
+        
+        // Draw outer glow for visibility
+        const innerGlowRadius = Math.max(1, scaledSize / 8);
+        const outerGlowRadius = Math.max(innerGlowRadius + 1, scaledSize / 2 + 15);
+        const glowGradient = ctx.createRadialGradient(
+            centerX, centerY, innerGlowRadius,
+            centerX, centerY, outerGlowRadius
         );
-        gradient.addColorStop(0, '#ff6b9d');
-        gradient.addColorStop(0.5, '#667eea');
+        glowGradient.addColorStop(0, 'rgba(255, 107, 157, 0.8)');
+        glowGradient.addColorStop(0.5, 'rgba(102, 126, 234, 0.6)');
+        glowGradient.addColorStop(1, 'rgba(118, 75, 162, 0)');
+        
+        ctx.fillStyle = glowGradient;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, outerGlowRadius, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Reset shadow for main note
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        
+        // Draw note with gradient (3D effect with lighter top)
+        const innerRadius = Math.max(1, Math.min(scaledSize / 8, scaledSize / 2 - 1));
+        const outerRadius = Math.max(innerRadius + 1, scaledSize / 2);
+        const gradient = ctx.createRadialGradient(
+            centerX - scaledSize / 6, centerY - scaledSize / 6, innerRadius,
+            centerX, centerY, outerRadius
+        );
+        gradient.addColorStop(0, '#ffb3d1'); // Lighter top for 3D
+        gradient.addColorStop(0.3, '#ff6b9d');
+        gradient.addColorStop(0.6, '#667eea');
         gradient.addColorStop(1, '#764ba2');
         
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(x + NOTE_SIZE/2, this.y + NOTE_SIZE/2, NOTE_SIZE/2, 0, Math.PI * 2);
+        ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
         ctx.fill();
         
-        // Draw note border
+        // Draw highlight for 3D effect
+        const highlightRadius = Math.max(1, scaledSize / 3);
+        const highlightGradient = ctx.createRadialGradient(
+            centerX - scaledSize / 6, centerY - scaledSize / 6, 0,
+            centerX - scaledSize / 6, centerY - scaledSize / 6, highlightRadius
+        );
+        highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+        highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        
+        ctx.fillStyle = highlightGradient;
+        ctx.beginPath();
+        ctx.arc(centerX - scaledSize / 6, centerY - scaledSize / 6, highlightRadius, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Draw note border with increased width for visibility
         ctx.strokeStyle = 'white';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = Math.max(2, 4 * this.scale);
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
         ctx.stroke();
     }
     
@@ -336,19 +394,45 @@ function drawTargetZones() {
     for (let i = 0; i < LANES; i++) {
         const x = i * laneWidth + (laneWidth - NOTE_SIZE) / 2;
         
-        // Draw target zone
-        ctx.strokeStyle = 'rgba(255, 107, 157, 0.6)';
-        ctx.lineWidth = 4;
+        // Draw outer glow for target zone
+        const glowGradient = ctx.createRadialGradient(
+            x + NOTE_SIZE/2, TARGET_Y + NOTE_SIZE/2, NOTE_SIZE/2,
+            x + NOTE_SIZE/2, TARGET_Y + NOTE_SIZE/2, NOTE_SIZE/2 + 20
+        );
+        glowGradient.addColorStop(0, 'rgba(255, 107, 157, 0.4)');
+        glowGradient.addColorStop(1, 'rgba(255, 107, 157, 0)');
+        
+        ctx.fillStyle = glowGradient;
+        ctx.beginPath();
+        ctx.arc(x + NOTE_SIZE/2, TARGET_Y + NOTE_SIZE/2, NOTE_SIZE/2 + 20, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Draw target zone with 3D effect
+        ctx.strokeStyle = 'rgba(255, 107, 157, 0.8)';
+        ctx.lineWidth = 5;
         ctx.beginPath();
         ctx.arc(x + NOTE_SIZE/2, TARGET_Y + NOTE_SIZE/2, NOTE_SIZE/2 + 5, 0, Math.PI * 2);
         ctx.stroke();
         
-        // Draw key label
+        // Draw inner circle for 3D depth
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(x + NOTE_SIZE/2, TARGET_Y + NOTE_SIZE/2, NOTE_SIZE/2 - 5, 0, Math.PI * 2);
+        ctx.stroke();
+        
+        // Draw key label with shadow for visibility
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+        ctx.shadowBlur = 10;
         ctx.fillStyle = 'white';
-        ctx.font = 'bold 24px Arial';
+        ctx.font = 'bold 32px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(LANE_KEYS[i].toUpperCase(), x + NOTE_SIZE/2, TARGET_Y + NOTE_SIZE/2);
+        
+        // Reset shadow
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
     }
 }
 
