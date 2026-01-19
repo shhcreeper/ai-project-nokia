@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Gay Frog Adventure 🏳️‍🌈🐸</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Game UI Overlay -->
+        <div id="ui-overlay">
+            <div class="ui-top">
+                <div class="retro-panel score-panel">
+                    <div class="panel-title">SCORE</div>
+                    <div class="panel-value" id="score">00000</div>
+                </div>
+                <div class="retro-panel items-panel">
+                    <div class="panel-title">ITEMS</div>
+                    <div class="panel-value" id="items">0/10</div>
+                </div>
+            </div>
+            
+            <!-- Start Screen -->
+            <div id="start-screen" class="screen-overlay active">
+                <div class="retro-box">
+                    <h1 class="game-title">FAST GAY FROG</h1>
+                    <h2 class="game-subtitle">ADVENTURE</h2>
+                    <div class="frog-ascii">
+                        <pre>
+    @..@
+   (----)
+  ( >__< )
+  ^^ ~~ ^^
+                        </pre>
+                    </div>
+                    <div class="rainbow-text">🏳️‍🌈 FABULOUS PLATFORMING 🏳️‍🌈</div>
+                    <div class="instructions">
+                        <p>CONTROLS:</p>
+                        <p>WASD or ARROW KEYS - MOVE</p>
+                        <p>SPACE - JUMP</p>
+                        <p>R - RESTART</p>
+                    </div>
+                    <button class="retro-button" id="start-button">START GAME</button>
+                </div>
+            </div>
+            
+            <!-- Win Screen -->
+            <div id="win-screen" class="screen-overlay">
+                <div class="retro-box">
+                    <h1 class="rainbow-text">🎉 FABULOUS! 🎉</h1>
+                    <h2>YOU WIN!</h2>
+                    <div id="final-stats">
+                        <p>FINAL SCORE: <span id="final-score">0</span></p>
+                        <p>ITEMS COLLECTED: <span id="final-items">0</span></p>
+                    </div>
+                    <button class="retro-button" id="restart-button">PLAY AGAIN</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Three.js Canvas -->
+        <div id="canvas-container"></div>
+    </div>
+    
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
