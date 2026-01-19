@@ -1,6 +1,8 @@
 // Fast Gay Frog Adventure - Game Logic
 // Using Three.js for 3D graphics
 
+import * as THREE from 'three';
+
 // Game Configuration
 const CONFIG = {
     frogSpeed: 0.15,

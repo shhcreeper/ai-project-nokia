@@ -1,0 +1,15 @@
+{
+  "name": "frog-game",
+  "version": "1.0.0",
+  "description": "A fabulous retro-styled 3D pixel platformer featuring a fast, rainbow-colored gay frog!",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.182.0"
+  }
+}

@@ -38,18 +38,30 @@ Fast Gay Frog Adventure is a retro 3D platformer inspired by the Apple ][ era, f
 
 ### Local Setup
 
-1. Open `index.html` in a modern web browser (Chrome, Firefox, Safari, Edge)
-2. Click "START GAME" to begin
-3. Use keyboard controls to play
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Open `index.html` in a modern web browser (Chrome, Firefox, Safari, Edge)
+   - You can use a local server like:
+   ```bash
+   python3 -m http.server 8000
+   ```
+   - Then navigate to `http://localhost:8000/index.html`
+
+3. Click "START GAME" to begin
+4. Use keyboard controls to play
 
 ### Online Hosting
 
 To host online:
 1. Upload the entire `frog-game` folder to any web server
-2. Ensure all files (index.html, style.css, game.js) are in the same directory
-3. Access via the web URL
+2. Run `npm install` on the server to install Three.js
+3. Ensure all files are in the same directory
+4. Access via the web URL
 
-**Note:** The game uses Three.js via CDN, so an internet connection is required for the 3D graphics library.
+**Note:** The game uses Three.js as an ES6 module from node_modules.
 
 ## Technical Details
 
