@@ -67,7 +67,7 @@ To host online:
 
 ### Built With
 
-- **Three.js** (r128) - 3D graphics rendering
+- **Three.js** (v0.182.0) - 3D graphics rendering
 - **Vanilla JavaScript** - Game logic
 - **HTML5 Canvas** - Rendering surface
 - **CSS3** - Retro UI styling
